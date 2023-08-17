@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 import '../../../utill/color_resources.dart';
 import '../../../utill/images.dart';
 import '../../../utill/styles.dart';
-import '../appointment/my_appointment_screen.dart';
-import '../chat/chat_screen.dart';
 import '../home/home_screen.dart';
 import '../profile/profile_screen.dart';
 
@@ -26,8 +24,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
     pageIndex=0;
     screenList=[
       const HomeScreen(),
-      const MyAppointmentScreen(),
-      const ChatScreen(),
+      const HomeScreen(),
+      const HomeScreen(),
       const ProfileScreen(),
     ];
   }
@@ -48,9 +46,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
         unselectedLabelStyle: montserratRegular.copyWith(color:ColorResources.BLACK.withOpacity(0.5),),
         type: BottomNavigationBarType.fixed,
         items: [
-          barItem(Images.ic_home, 0),
-          barItem(Images.ic_date, 1),
-          barItem(Images.ic_chat, 2),
+          barItem(Images.ic_user, 0),
+          barItem(Images.ic_user, 1),
+          barItem(Images.ic_user, 2),
           barItem(Images.ic_user, 3),
         ],
         onTap: (value) {
