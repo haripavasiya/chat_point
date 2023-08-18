@@ -10,8 +10,9 @@ class Images {
   static const String splash_bg = 'assets/image/splash_bg.jpg';
   static const String bg_button = 'assets/image/bg_button.png';
   static const String ic_email = 'assets/image/ic_email.png';
-  static const String ic_password = 'assets/image/ic_password.png';
   static const String ic_user = 'assets/image/ic_user.png';
-  static const String ic_notification = 'assets/image/ic_notification.png';
   static const String ic_phone = 'assets/image/ic_phone.png';
+  static const String ic_chat = 'assets/image/ic_chat.png';
+  static const String ic_bg_chat_icon = 'assets/image/ic_bg_chat_icon.png';
+  static const String ic_settings = 'assets/image/ic_settings.png';
 }

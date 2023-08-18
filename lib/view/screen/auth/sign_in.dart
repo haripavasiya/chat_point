@@ -1,4 +1,3 @@
-import 'package:chat_point/view/screen/auth/sign_up.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';

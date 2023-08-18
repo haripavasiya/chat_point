@@ -10,7 +10,6 @@ import '../../../utill/dimensions.dart';
 import '../../../utill/images.dart';
 import '../../../utill/styles.dart';
 import '../../baseview/button/custom_button.dart';
-import '../auth/sign_up.dart';
 import '../dashboard/dashboard_screen.dart';
 
 class OTP_Screen extends StatefulWidget {
@@ -85,8 +84,8 @@ class _OTP_ScreenState extends State<OTP_Screen> {
                         selectedFillColor: ColorResources.WHITE,
                         inactiveFillColor: ColorResources.BLACK.withOpacity(0.10),
                         inactiveColor: ColorResources.BLACK.withOpacity(0.10),
-                        activeColor: ColorResources.BLACK.withOpacity(0.55),
-                        activeFillColor: ColorResources.BLACK.withOpacity(0.55),
+                        activeColor: ColorResources.BLACK.withOpacity(0.10),
+                        activeFillColor: ColorResources.BLACK.withOpacity(0.10),
                       ),
                       animationDuration: const Duration(milliseconds: 300),
                       backgroundColor: Colors.transparent,
@@ -101,7 +100,7 @@ class _OTP_ScreenState extends State<OTP_Screen> {
                     height: AppConstants.itemWidth * 0.06,
                   ),
                   GestureDetector(
-                      onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => Sign_Up_Screen(),)),
+                      onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => const DashboardScreen(),)),
                       child: const CustomButton("Verify OTP")),
                   SizedBox(
                     height: AppConstants.itemWidth * 0.06,
