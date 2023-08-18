@@ -1,3 +1,4 @@
+import 'package:chat_point/provider/otp_provider.dart';
 import 'package:chat_point/utill/preferenceutils.dart';
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
@@ -21,6 +22,7 @@ Future<void> init() async {
   // Provider
   sl.registerFactory(() => SplashProvider());
   sl.registerFactory(() => ThemeProvider(sharedPreferences: sl()));
+  sl.registerFactory(() => OTPProvider());
 
   // External
   PreferenceUtils.init();

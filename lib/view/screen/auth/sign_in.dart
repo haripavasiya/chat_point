@@ -7,7 +7,9 @@ import '../../../utill/app_constants.dart';
 import '../../../utill/color_resources.dart';
 import '../../../utill/images.dart';
 import '../../../utill/styles.dart';
+import '../../baseview/button/custom_button.dart';
 import '../dashboard/dashboard_screen.dart';
+import '../otp/otp_screen.dart';
 import '../privacy_policy/privacy_policy_screen.dart';
 import '../terms_condition/terms_condition_screen.dart';
 
@@ -39,11 +41,8 @@ class _SignInScreenState extends State<SignInScreen> {
             children: [
               SizedBox(height: AppConstants.itemHeight*0.01,),
               //App logo
-              Image.asset(Images.logo,width: AppConstants.itemWidth*0.2,height: AppConstants.itemWidth*0.2,fit: BoxFit.fill,),
+              Image.asset(Images.logo,width: AppConstants.itemWidth*0.4,height: AppConstants.itemWidth*0.4,fit: BoxFit.fill,),
               const SizedBox(height: 10,),
-              Image.asset(Images.logoHorizontal,width: AppConstants.itemWidth*0.55,height: AppConstants.itemWidth*0.09,fit: BoxFit.fill,),
-              SizedBox(height: AppConstants.itemHeight*0.02,),
-
               //Fill Form
               Container(
                 width: AppConstants.itemWidth,
@@ -90,11 +89,11 @@ class _SignInScreenState extends State<SignInScreen> {
               ),
               SizedBox(height: AppConstants.itemHeight*0.02,),
               Row(
-                mainAxisAlignment: MainAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Expanded(child:  RichText(
-                    textAlign: TextAlign.left,
+                    textAlign: TextAlign.center,
                     text: TextSpan(children: <TextSpan>[
 
                       TextSpan(
@@ -120,59 +119,15 @@ class _SignInScreenState extends State<SignInScreen> {
                   ),),
                 ],
               ),
-              //Button
+              SizedBox(height: AppConstants.itemHeight*0.02,),
+//Button
               GestureDetector(
                 onTap:() {
-                  if(phoneControll.text==''){
-                    ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
-                          content: Text('Please enter mobile no'),
-                          backgroundColor: ColorResources.RED,
-                          duration: Duration(seconds: 2),
-                        )
-                    );
-                  } else if(phoneControll.text.length!=10){
-                    ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
-                          content: Text('Please enter valid mobile no'),
-                          backgroundColor: ColorResources.RED,
-                          duration: Duration(seconds: 2),
-                        )
-                    );
-                  } else if(!isChecked){
-                    ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
-                          content: Text('Please accept Privacy Policy and Terms of use'),
-                          backgroundColor: ColorResources.RED,
-                          duration: Duration(seconds: 2),
-                        )
-                    );
-                  }  else{
-
-                  }
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => const OTP_Screen(),));
                 },
-                child: Container(
-                  width: AppConstants.itemWidth,
-                  margin: EdgeInsets.symmetric(vertical: AppConstants.itemWidth*0.02,horizontal: AppConstants.itemWidth*0.13),
-                  padding: EdgeInsets.symmetric(vertical: AppConstants.itemWidth*0.035),
-                  decoration: const BoxDecoration(
-                    image: DecorationImage(image: AssetImage(Images.bg_button),fit: BoxFit.fill),
-                  ),
-                  child: Text("Log In",textAlign: TextAlign.center,style: montserratRegular.copyWith(color: ColorResources.WHITE,fontSize: AppConstants.itemWidth*0.04)),
-                ),
+                child: const CustomButton("Log In"),
               ),
               SizedBox(height: AppConstants.itemHeight*0.005,),
-
-              //Create Account
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text("Create a new account ? ",style: montserratRegular.copyWith(color: ColorResources.BLACK.withOpacity(0.5),fontSize: AppConstants.itemWidth*0.035),),
-                  GestureDetector(
-                      onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => Sign_Up_Screen(),)),
-                      child: Text("Sign Up",style: montserratRegular.copyWith(color: ColorResources.COLOR_PRIMERY,fontSize: AppConstants.itemWidth*0.035),))
-                ],
-              ),
             ],
           ),
         ),

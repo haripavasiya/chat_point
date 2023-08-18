@@ -13,11 +13,10 @@ class CustomButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: AppConstants.itemWidth,
-      margin: EdgeInsets.symmetric(vertical: AppConstants.itemWidth*0.02,horizontal: AppConstants.itemWidth*0.05),
-      padding: EdgeInsets.symmetric(vertical: AppConstants.itemWidth*0.04),
-      decoration: BoxDecoration(
-        color: ColorResources.COLOR_PRIMERY,
-        borderRadius: BorderRadius.circular(AppConstants.itemWidth*0.02),
+      margin: EdgeInsets.symmetric(vertical: AppConstants.itemWidth*0.02,horizontal: AppConstants.itemWidth*0.13),
+      padding: EdgeInsets.symmetric(vertical: AppConstants.itemWidth*0.05),
+      decoration: const BoxDecoration(
+        image: DecorationImage(image: AssetImage(Images.bg_button),fit: BoxFit.fill),
       ),
       alignment: Alignment.center,
       child: Text(buttonText,style: montserratMedium.copyWith(color: ColorResources.WHITE,fontSize: AppConstants.itemWidth*0.04),),

@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:chat_point/provider/otp_provider.dart';
 import 'package:chat_point/provider/splash_provider.dart';
 import 'package:chat_point/provider/theme_provider.dart';
 import 'package:chat_point/utill/app_constants.dart';
@@ -21,6 +22,7 @@ Future<void> main() async {
     runApp(MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context) => di.sl<SplashProvider>()),
+        ChangeNotifierProvider(create: (context) => di.sl<OTPProvider>()),
         ChangeNotifierProvider(create: (context) => di.sl<ThemeProvider>()),
       ],
       child: MyApp(),
