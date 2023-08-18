@@ -32,7 +32,7 @@ class _SplashScreenState extends State<SplashScreen> {
   route(String isRoute) async {
     Future.delayed(const Duration(seconds: 3)).then((val) {
       if (isRoute=="1") {
-        Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) => const SignInScreen()));
+        Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) => const DashboardScreen()));
       }
       else {
         Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) => const IntroScreen()));

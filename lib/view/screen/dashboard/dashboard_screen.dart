@@ -16,6 +16,20 @@ class DashboardScreen extends StatefulWidget {
 
 class _DashboardScreenState extends State<DashboardScreen> {
 
+  int pageIndex=1;
+  List<Widget> screenList=[];
+
+  @override
+  void initState() {
+    super.initState();
+    pageIndex=1;
+    screenList=[
+      const ProfileScreen(),
+      const HomeScreen(),
+      const ProfileScreen(),
+    ];
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,7 +44,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
         alignment: Alignment.center,
         child: Column(
           children: [
-            Expanded(child: SizedBox()),
+            Expanded(child: screenList[pageIndex]),
             Stack(
               children: [
                 Padding(
@@ -48,13 +62,17 @@ class _DashboardScreenState extends State<DashboardScreen> {
                       children: [
                         Expanded(child: GestureDetector(
                           onTap: () {
-
+                            setState(() {
+                              pageIndex=0;
+                            });
                           },
                             child: Image.asset(Images.ic_user,height: AppConstants.itemWidth*0.07,width: AppConstants.itemWidth*0.07,))),
                         Expanded(child: SizedBox()),
                         Expanded(child: GestureDetector(
                             onTap: () {
-
+                              setState(() {
+                                pageIndex=2;
+                              });
                             },
                             child: Image.asset(Images.ic_settings,height: AppConstants.itemWidth*0.07,width: AppConstants.itemWidth*0.07,))),
                       ],
@@ -63,7 +81,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 ),
                 GestureDetector(
                   onTap: () {
-
+                    setState(() {
+                      pageIndex=1;
+                    });
                   },
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,

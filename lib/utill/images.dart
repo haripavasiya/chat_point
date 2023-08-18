@@ -15,4 +15,14 @@ class Images {
   static const String ic_chat = 'assets/image/ic_chat.png';
   static const String ic_bg_chat_icon = 'assets/image/ic_bg_chat_icon.png';
   static const String ic_settings = 'assets/image/ic_settings.png';
+  static const String ic_notification = 'assets/image/ic_notification.png';
+  static const String ic_search = 'assets/image/ic_search.png';
+  static const String ic_user_1 = 'assets/image/ic_user_1.png';
+  static const String ic_user_2 = 'assets/image/ic_user_2.png';
+  static const String ic_user_3 = 'assets/image/ic_user_3.png';
+  static const String ic_user_4 = 'assets/image/ic_user_4.png';
+  static const String ic_user_5 = 'assets/image/ic_user_5.png';
+  static const String ic_user_6 = 'assets/image/ic_user_6.png';
+  static const String ic_user_7 = 'assets/image/ic_user_7.png';
+  static const String ic_user_8 = 'assets/image/ic_user_8.png';
 }
