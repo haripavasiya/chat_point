@@ -6,6 +6,7 @@ import '../../../utill/images.dart';
 import '../../../utill/styles.dart';
 import '../home/home_screen.dart';
 import '../profile/profile_screen.dart';
+import '../setting/setting_screen.dart';
 
 class DashboardScreen extends StatefulWidget {
   const DashboardScreen({Key? key}) : super(key: key);
@@ -26,7 +27,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
     screenList=[
       const ProfileScreen(),
       const HomeScreen(),
-      const ProfileScreen(),
+      const SettingScreen(),
     ];
   }
 
@@ -37,15 +38,26 @@ class _DashboardScreenState extends State<DashboardScreen> {
       body: Container(
         height: AppConstants.itemHeight,
         width: AppConstants.itemWidth,
-        decoration: const BoxDecoration(
+        decoration: BoxDecoration(
             color: ColorResources.WHITE,
-            image: DecorationImage(image: AssetImage(Images.splash_bg),fit: BoxFit.fill)
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [
+              Color(0xffB8D3FC),
+              Color(0xffFFDFFC),
+            ],
+          ),
         ),
         alignment: Alignment.center,
-        child: Column(
+        child: Stack(
+          alignment: Alignment.bottomCenter,
           children: [
             Expanded(child: screenList[pageIndex]),
-            Stack(
+            Positioned(
+              bottom: 0,
+                child: Stack(
+              alignment: Alignment.topCenter,
               children: [
                 Padding(
                   padding: const EdgeInsets.only(top: 30),
@@ -61,11 +73,11 @@ class _DashboardScreenState extends State<DashboardScreen> {
                     child: Row(
                       children: [
                         Expanded(child: GestureDetector(
-                          onTap: () {
-                            setState(() {
-                              pageIndex=0;
-                            });
-                          },
+                            onTap: () {
+                              setState(() {
+                                pageIndex=0;
+                              });
+                            },
                             child: Image.asset(Images.ic_user,height: AppConstants.itemWidth*0.07,width: AppConstants.itemWidth*0.07,))),
                         Expanded(child: SizedBox()),
                         Expanded(child: GestureDetector(
@@ -85,28 +97,25 @@ class _DashboardScreenState extends State<DashboardScreen> {
                       pageIndex=1;
                     });
                   },
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
+                  child: Column(
                     children: [
-                      Column(children: [
-                        Container(
-                          height: 60,
-                          width: 60,
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            image: DecorationImage(image: AssetImage(Images.ic_bg_chat_icon),fit: BoxFit.fill),
-                          ),
-                          alignment: Alignment.center,
-                          padding: EdgeInsets.all(AppConstants.itemWidth*0.035),
-                          child: Image.asset(Images.ic_chat),
+                      Container(
+                        height: 60,
+                        width: 60,
+                        decoration: const BoxDecoration(
+                          shape: BoxShape.circle,
+                          image: DecorationImage(image: AssetImage(Images.ic_bg_chat_icon),fit: BoxFit.fill),
                         ),
-                        Image.asset(Images.logoHorizontal,height: AppConstants.itemWidth*0.07,width: AppConstants.itemWidth*0.25,)
-                      ],)
+                        alignment: Alignment.center,
+                        padding: EdgeInsets.all(AppConstants.itemWidth*0.035),
+                        child: Image.asset(Images.ic_chat),
+                      ),
+                      Image.asset(Images.logoHorizontal,height: AppConstants.itemWidth*0.07,width: AppConstants.itemWidth*0.25,)
                     ],
                   ),
                 ),
               ],
-            )
+            ))
           ],
         ),
       ),

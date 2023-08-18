@@ -119,7 +119,7 @@ class _SignInScreenState extends State<SignInScreen> {
                 ],
               ),
               SizedBox(height: AppConstants.itemHeight*0.02,),
-//Button
+              //Button
               GestureDetector(
                 onTap:() {
                   Navigator.push(context, MaterialPageRoute(builder: (context) => const OTP_Screen(),));
