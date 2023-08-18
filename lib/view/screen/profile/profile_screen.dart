@@ -2,7 +2,6 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
 
 import '../../../utill/app_constants.dart';
@@ -19,14 +18,19 @@ class ProfileScreen extends StatefulWidget {
 
 class _ProfileScreenState extends State<ProfileScreen> {
 
-  TextEditingController usernameController =TextEditingController();
-  TextEditingController emailController =TextEditingController();
-  TextEditingController phonenoController =TextEditingController();
-  final FocusNode usernameFocus = FocusNode();
-  final FocusNode emailFocus = FocusNode();
-  final FocusNode phonenoFocus = FocusNode();
+  TextEditingController nameControll=TextEditingController();
+  TextEditingController phoneControll=TextEditingController();
+  TextEditingController infoControll=TextEditingController();
   File imageFile = File("");
-  ImageCropper imagecropp = new ImageCropper();
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    nameControll.text="Misti L. Robinson";
+    phoneControll.text="+91 1234567890";
+    infoControll.text="Lorem Ipsum";
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -72,30 +76,152 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 SizedBox(width: AppConstants.itemWidth*0.03,),
               ],
             ),
-            
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(1000),
-                  child: Image.file(imageFile,
-                    fit: BoxFit.cover,
-                    width: AppConstants.itemHeight*0.15,
-                    height: AppConstants.itemHeight*0.15,),
-                ),
-                GestureDetector(
-                  onTap: () => getImagePick(),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
+            Expanded(child: Container(
+              width: AppConstants.itemWidth,
+              decoration: BoxDecoration(
+                  color: ColorResources.WHITE.withOpacity(0.2),
+                  borderRadius: BorderRadius.only(topLeft: Radius.circular(AppConstants.itemWidth*0.1),topRight: Radius.circular(AppConstants.itemWidth*0.1))
+              ),
+              margin: EdgeInsets.only(top:AppConstants.itemWidth*0.1),
+              child: SingleChildScrollView(
+                padding: EdgeInsets.only(right: AppConstants.itemWidth*0.03,left: AppConstants.itemWidth*0.03),
+                child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  SizedBox(height: AppConstants.itemWidth*0.07,),
+                  imageFile.path==""?ClipRRect(
+                    borderRadius: BorderRadius.circular(1000),
+                    child: Image.asset(Images.logo,
+                      fit: BoxFit.cover,
+                      width: AppConstants.itemHeight*0.15,
+                      height: AppConstants.itemHeight*0.15,),
+                  ):ClipRRect(
+                    borderRadius: BorderRadius.circular(1000),
+                    child: Image.file(imageFile,
+                      fit: BoxFit.cover,
+                      width: AppConstants.itemHeight*0.15,
+                      height: AppConstants.itemHeight*0.15,),
+                  ),
+                  SizedBox(height: AppConstants.itemWidth*0.02,),
+                  GestureDetector(
+                    onTap: () => getImagePick(),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Image.asset(Images.ic_camera,height: 25,width: 25,color: ColorResources.COLOR_PRIMERY,),
+                        SizedBox(width: AppConstants.itemWidth*0.02,),
+                        Text("Change",
+                          style: montserratRegular.copyWith(color: ColorResources.COLOR_PRIMERY,fontSize: AppConstants.itemWidth*0.05),)
+                      ],
+                    ),
+                  ),
+                  Row(
                     children: [
-                      Image.asset(Images.ic_camera,height: 25,width: 25,color: ColorResources.COLOR_PRIMERY,),
-                      Text("Change",
-                        style: montserratSamiBold.copyWith(color: ColorResources.COLOR_PRIMERY,fontSize: AppConstants.itemWidth*0.05),)
+                      Image.asset(Images.ic_user,width: 25,height: 25,color: ColorResources.BLACK,),
+                      Expanded(
+                        child: TextFormField(
+                          controller:nameControll,
+                          textAlign: TextAlign.left,
+                          keyboardType: TextInputType.text,
+                          textCapitalization: TextCapitalization.characters,
+                          textInputAction: TextInputAction.next,
+                          style: montserratRegular.copyWith(color: ColorResources.BLACK),
+                          inputFormatters: [
+                            FilteringTextInputFormatter.singleLineFormatter
+                          ],
+                          maxLength: 10,
+                          onChanged: (value) {
+                            if(value.length==10){
+                              AppConstants.closeKeyboard();
+                            }
+                          },
+                          decoration: InputDecoration(
+                              border: InputBorder.none,
+                              fillColor: ColorResources.TRANSPARENT,
+                              hintText: "Mobile Number",
+                              hintStyle: montserratRegular.copyWith(color: ColorResources.BLACK.withOpacity(0.8)),
+                              filled: true,
+                              counterText: ""
+                          ),
+                        ),
+                      ),
                     ],
                   ),
-                )
-              ],
-            )
+                  const Divider(thickness: 1,height: 1,color: ColorResources.GREY),
+                  SizedBox(height: AppConstants.itemWidth*0.03,),
+
+                  Row(
+                    children: [
+                      Image.asset(Images.ic_info,width: 25,height: 25,color: ColorResources.BLACK,),
+                      Expanded(
+                        child: TextFormField(
+                          controller:infoControll,
+                          textAlign: TextAlign.left,
+                          keyboardType: TextInputType.text,
+                          textCapitalization: TextCapitalization.characters,
+                          textInputAction: TextInputAction.next,
+                          style: montserratRegular.copyWith(color: ColorResources.BLACK),
+                          inputFormatters: [
+                            FilteringTextInputFormatter.singleLineFormatter
+                          ],
+                          maxLength: 10,
+                          onChanged: (value) {
+                            if(value.length==10){
+                              AppConstants.closeKeyboard();
+                            }
+                          },
+                          decoration: InputDecoration(
+                              border: InputBorder.none,
+                              fillColor: ColorResources.TRANSPARENT,
+                              hintText: "Mobile Number",
+                              hintStyle: montserratRegular.copyWith(color: ColorResources.BLACK.withOpacity(0.8)),
+                              filled: true,
+                              counterText: ""
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  const Divider(thickness: 1,height: 1,color: ColorResources.GREY),
+                  SizedBox(height: AppConstants.itemWidth*0.03,),
+
+                  Row(
+                    children: [
+                      Image.asset(Images.ic_phone,width: 25,height: 25,color: ColorResources.BLACK,),
+                      Expanded(
+                        child: TextFormField(
+                          controller:phoneControll,
+                          textAlign: TextAlign.left,
+                          keyboardType: TextInputType.number,
+                          textCapitalization: TextCapitalization.characters,
+                          textInputAction: TextInputAction.done,
+                          style: montserratRegular.copyWith(color: ColorResources.BLACK),
+                          inputFormatters: [
+                            FilteringTextInputFormatter.digitsOnly
+                          ],
+                          maxLength: 10,
+                          onChanged: (value) {
+                            if(value.length==10){
+                              AppConstants.closeKeyboard();
+                            }
+                          },
+                          decoration: InputDecoration(
+                              border: InputBorder.none,
+                              fillColor: ColorResources.TRANSPARENT,
+                              hintText: "Mobile Number",
+                              hintStyle: montserratRegular.copyWith(color: ColorResources.BLACK.withOpacity(0.8)),
+                              filled: true,
+                              counterText: ""
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  const Divider(thickness: 1,height: 1,color: ColorResources.GREY),
+                  SizedBox(height: AppConstants.itemWidth*0.03,),
+                ],
+              ),),
+            ))
           ],
         ),
       ),
@@ -103,33 +229,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
   }
 
   Future getImagePick() async {
-    final ImagePicker imagePicker = ImagePicker();
-    final XFile? pickedFile = await imagePicker.pickImage(source: ImageSource.gallery, imageQuality: 50);
-    File? file = File(imageFile.path);
+    PickedFile? pickedFile = await ImagePicker().getImage(
+      source: ImageSource.gallery,
+      maxWidth: 1800,
+      maxHeight: 1800,
+    );
     if (pickedFile != null) {
-      CroppedFile? cropped = (await imagecropp.cropImage(
-          sourcePath: pickedFile.path,
-          compressQuality: 40,
-          compressFormat: ImageCompressFormat.jpg,
-          aspectRatioPresets: [
-            CropAspectRatioPreset.original
-          ],
-          uiSettings: [
-            IOSUiSettings(minimumAspectRatio: 1.0,),
-            AndroidUiSettings(
-                toolbarTitle: 'Cropper',
-                toolbarColor: ColorResources.GREY,
-                toolbarWidgetColor: Colors.white,
-                initAspectRatio: CropAspectRatioPreset.square,
-                lockAspectRatio: false),
-          ])); /*as File?;*/
       setState(() {
-        if (cropped != null) {
-          print(File(cropped.path));
-          imageFile=File(cropped.path);
-        }
+        imageFile = File(pickedFile.path);
       });
     }
-    return file;
   }
 }
