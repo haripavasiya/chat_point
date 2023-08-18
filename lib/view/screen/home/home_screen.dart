@@ -121,7 +121,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 : SizedBox(),
                           ],
                         ),
-                        SizedBox(width: AppConstants.itemWidth*0.04,),
+                    SizedBox(width: AppConstants.itemWidth*0.04,),
                     Expanded(child: Column(
                       children: [
                         Row(

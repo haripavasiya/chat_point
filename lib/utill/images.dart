@@ -25,4 +25,5 @@ class Images {
   static const String ic_user_6 = 'assets/image/ic_user_6.png';
   static const String ic_user_7 = 'assets/image/ic_user_7.png';
   static const String ic_user_8 = 'assets/image/ic_user_8.png';
+  static const String ic_camera = 'assets/image/ic_camera.png';
 }
