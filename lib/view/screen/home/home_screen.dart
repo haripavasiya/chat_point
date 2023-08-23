@@ -1,3 +1,4 @@
+import 'package:chat_point/view/screen/message/message_details_screen.dart';
 import 'package:chat_point/view/screen/notification/notification_screen.dart';
 import 'package:chat_point/view/screen/search/search_screen.dart';
 import 'package:flutter/material.dart';
@@ -92,82 +93,85 @@ class _HomeScreenState extends State<HomeScreen> {
                 physics: const ClampingScrollPhysics(),
                 shrinkWrap: true,
                 itemBuilder: (context, index) {
-                return Column(children: [
-                  Row(
-                    children: [
-                      Stack(
-                            alignment: Alignment.topRight,
-                            children: [
-                              Container(
-                                decoration: BoxDecoration(
-                                    color: messageUserList[index].color,
-                                    borderRadius: BorderRadius.circular(
-                                        AppConstants.itemWidth * 0.02)),
-                                child: Image.asset(
-                                  messageUserList[index].imageUrl,
-                                  height: AppConstants.itemWidth * 0.15,
-                                  width: AppConstants.itemWidth * 0.15,
+                return GestureDetector(
+                  onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => MessageDetailsScreen(messageUserList[index]),)),
+                  child: Column(children: [
+                    Row(
+                      children: [
+                        Stack(
+                              alignment: Alignment.topRight,
+                              children: [
+                                Container(
+                                  decoration: BoxDecoration(
+                                      color: messageUserList[index].color,
+                                      borderRadius: BorderRadius.circular(
+                                          AppConstants.itemWidth * 0.02)),
+                                  child: Image.asset(
+                                    messageUserList[index].imageUrl,
+                                    height: AppConstants.itemWidth * 0.15,
+                                    width: AppConstants.itemWidth * 0.15,
+                                  ),
                                 ),
-                              ),
-                              messageUserList[index].isOnline == "1"
-                                  ? Container(
-                                      decoration: BoxDecoration(
-                                          color: ColorResources.WHITE
-                                              .withOpacity(0.5),
-                                          borderRadius: BorderRadius.circular(
-                                              AppConstants.itemWidth * 0.02)),
-                                      padding: EdgeInsets.all(
-                                          AppConstants.itemWidth * 0.005),
-                                      child: Icon(
-                                        Icons.circle,
-                                        color: ColorResources.GREEN,
-                                        size: 14,
-                                      ),
-                                    )
-                                  : SizedBox(),
-                            ],
+                                messageUserList[index].isOnline == "1"
+                                    ? Container(
+                                        decoration: BoxDecoration(
+                                            color: ColorResources.WHITE
+                                                .withOpacity(0.5),
+                                            borderRadius: BorderRadius.circular(
+                                                AppConstants.itemWidth * 0.02)),
+                                        padding: EdgeInsets.all(
+                                            AppConstants.itemWidth * 0.005),
+                                        child: Icon(
+                                          Icons.circle,
+                                          color: ColorResources.GREEN,
+                                          size: 14,
+                                        ),
+                                      )
+                                    : SizedBox(),
+                              ],
+                            ),
+                        SizedBox(width: AppConstants.itemWidth*0.04,),
+                        Expanded(child: Column(
+                          children: [
+                            Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Expanded(
+                                  child: Text("${messageUserList[index].name}",
+                                      style: montserratMedium.copyWith(color:ColorResources.BLACK,
+                                          fontSize: AppConstants.itemWidth*0.045)),
+                                ),
+                              ],
+                            ),
+                            SizedBox(height: AppConstants.itemWidth*0.01,),
+                            Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Expanded(
+                                  child: Text("${messageUserList[index].status}",
+                                      style: montserratMedium.copyWith(color:ColorResources.BLACK.withOpacity(0.5),
+                                          fontSize: AppConstants.itemWidth*0.035)),
+                                ),
+                              ],
+                            ),
+                          ],
+                        )),
+                        messageUserList[index].messageCount=="0"?SizedBox():Container(
+                          decoration: BoxDecoration(
+                              color: Color(0xff1E1E1E),
+                            shape: BoxShape.circle
                           ),
-                      SizedBox(width: AppConstants.itemWidth*0.04,),
-                      Expanded(child: Column(
-                        children: [
-                          Row(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Expanded(
-                                child: Text("${messageUserList[index].name}",
-                                    style: montserratMedium.copyWith(color:ColorResources.BLACK,
-                                        fontSize: AppConstants.itemWidth*0.045)),
-                              ),
-                            ],
-                          ),
-                          SizedBox(height: AppConstants.itemWidth*0.01,),
-                          Row(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Expanded(
-                                child: Text("${messageUserList[index].status}",
-                                    style: montserratMedium.copyWith(color:ColorResources.BLACK.withOpacity(0.5),
-                                        fontSize: AppConstants.itemWidth*0.035)),
-                              ),
-                            ],
-                          ),
-                        ],
-                      )),
-                      messageUserList[index].messageCount=="0"?SizedBox():Container(
-                        decoration: BoxDecoration(
-                            color: Color(0xff1E1E1E),
-                          shape: BoxShape.circle
+                          padding:EdgeInsets.all(AppConstants.itemWidth*0.018),
+                          child: Text("${messageUserList[index].messageCount}",
+                              style: montserratMedium.copyWith(color:ColorResources.WHITE,
+                                  fontSize: AppConstants.itemWidth*0.03)),
                         ),
-                        padding:EdgeInsets.all(AppConstants.itemWidth*0.018),
-                        child: Text("${messageUserList[index].messageCount}",
-                            style: montserratMedium.copyWith(color:ColorResources.WHITE,
-                                fontSize: AppConstants.itemWidth*0.03)),
-                      ),
-                      SizedBox(width: AppConstants.itemWidth*0.02,),
-                    ],
-                  ),
-                  Divider(thickness: 1,)
-                ],);
+                        SizedBox(width: AppConstants.itemWidth*0.02,),
+                      ],
+                    ),
+                    Divider(thickness: 1,)
+                  ],),
+                );
               },),
             )),
           ],

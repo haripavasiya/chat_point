@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
@@ -94,12 +95,18 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   children: [
                     SizedBox(height: AppConstants.itemWidth*0.07,),
                     imageFile.path==""?ClipRRect(
-                      borderRadius: BorderRadius.circular(1000),
-                      child: Image.asset(Images.logo,
+                      borderRadius: BorderRadius.circular(10),
+                      child: CachedNetworkImage(
+                        height: AppConstants.itemHeight*0.15,
+                        imageUrl:"https://cdn-icons-png.flaticon.com/512/3177/3177440.png",
+                        errorWidget: (context, url, error) => Image.asset(Images.placeholderImages,height: AppConstants.itemHeight*0.1,width: AppConstants.itemHeight*0.15,),
+                        progressIndicatorBuilder: (context, url, downloadProgress) => const Center(child: CircularProgressIndicator(color: ColorResources.COLOR_PRIMERY,),),
                         fit: BoxFit.cover,
                         width: AppConstants.itemHeight*0.15,
-                        height: AppConstants.itemHeight*0.15,),
-                    ):ClipRRect(
+                      ),
+                    )
+                        :
+                    ClipRRect(
                       borderRadius: BorderRadius.circular(1000),
                       child: Image.file(imageFile,
                         fit: BoxFit.cover,
@@ -232,7 +239,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     ),
                   ],
                 ),),
-              ))
+              )),
             ],
           ),
         ),

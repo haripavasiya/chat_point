@@ -53,7 +53,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
         child: Stack(
           alignment: Alignment.bottomCenter,
           children: [
-            Expanded(child: screenList[pageIndex]),
+            screenList[pageIndex],
             Positioned(
               bottom: 0,
                 child: Stack(
