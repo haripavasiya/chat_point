@@ -7,7 +7,6 @@ import '../../../utill/color_resources.dart';
 import '../../../utill/images.dart';
 import '../../../utill/styles.dart';
 import '../../baseview/button/custom_button.dart';
-import '../dashboard/dashboard_screen.dart';
 import '../otp/otp_screen.dart';
 import '../privacy_policy/privacy_policy_screen.dart';
 import '../terms_condition/terms_condition_screen.dart';
@@ -39,16 +38,17 @@ class _SignInScreenState extends State<SignInScreen> {
           child: Column(
             children: [
               SizedBox(height: AppConstants.itemHeight*0.01,),
+
               //App logo
               Image.asset(Images.logo,width: AppConstants.itemWidth*0.4,height: AppConstants.itemWidth*0.4,fit: BoxFit.fill,),
               const SizedBox(height: 10,),
+
               //Fill Form
               Container(
                 width: AppConstants.itemWidth,
                 margin: EdgeInsets.symmetric(horizontal: AppConstants.itemHeight*0.02),
                 child: Column(
                   children: [
-
                     Row(
                       children: [
                         Image.asset(Images.ic_phone,width: 25,height: 25,color: ColorResources.BLACK,),
@@ -87,6 +87,7 @@ class _SignInScreenState extends State<SignInScreen> {
                 ),
               ),
               SizedBox(height: AppConstants.itemHeight*0.02,),
+
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -119,6 +120,7 @@ class _SignInScreenState extends State<SignInScreen> {
                 ],
               ),
               SizedBox(height: AppConstants.itemHeight*0.02,),
+
               //Button
               GestureDetector(
                 onTap:() {

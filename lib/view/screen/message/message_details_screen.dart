@@ -1,5 +1,8 @@
 import 'package:chat_point/model/message_model.dart';
+import 'package:chat_point/view/screen/call/call_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:intl/intl.dart';
 
 import '../../../model/message_details_model.dart';
 import '../../../utill/app_constants.dart';
@@ -17,6 +20,9 @@ class MessageDetailsScreen extends StatefulWidget {
 
 class _MessageDetailsScreenState extends State<MessageDetailsScreen> {
   List<MessageDetailsModel> messageList=[];
+  TextEditingController messageController = TextEditingController();
+  final FocusNode messageFocus = FocusNode();
+  ScrollController listScrollController = ScrollController();
 
   @override
   void initState() {
@@ -100,6 +106,8 @@ class _MessageDetailsScreenState extends State<MessageDetailsScreen> {
                           children: [
                             Expanded(
                               child: Text(widget.messageUserList.status,
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
                                   style: montserratLight.copyWith(
                                       color:
                                           ColorResources.BLACK.withOpacity(0.3),
@@ -111,14 +119,17 @@ class _MessageDetailsScreenState extends State<MessageDetailsScreen> {
                       ],
                     ),
                   ),
-                  Container(
-                    decoration: BoxDecoration(
-                        color: ColorResources.WHITE,
-                        borderRadius: BorderRadius.circular(
-                            AppConstants.itemWidth * 0.02)),
-                    padding: const EdgeInsets.all(7),
-                    child:
-                        const Icon(Icons.call, color: ColorResources.COLOR_PRIMERY),
+                  GestureDetector(
+                    onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => CallScreen(widget.messageUserList),)),
+                    child: Container(
+                      decoration: BoxDecoration(
+                          color: ColorResources.WHITE,
+                          borderRadius: BorderRadius.circular(
+                              AppConstants.itemWidth * 0.02)),
+                      padding: const EdgeInsets.all(7),
+                      child:
+                          const Icon(Icons.call, color: ColorResources.COLOR_PRIMERY),
+                    ),
                   ),
                   Container(
                     decoration: BoxDecoration(
@@ -147,6 +158,7 @@ class _MessageDetailsScreenState extends State<MessageDetailsScreen> {
               ),
               Expanded(child: ListView.builder(
                 itemCount: messageList.length,
+                controller: listScrollController,
                 padding: EdgeInsets.symmetric(horizontal: AppConstants.itemWidth*0.03),
                 shrinkWrap: true,
                 physics: const ClampingScrollPhysics(),
@@ -187,11 +199,107 @@ class _MessageDetailsScreenState extends State<MessageDetailsScreen> {
                       const SizedBox(height: 5,),
                     ],
                   );
-              },))
+              },)),
+              Row(
+                children: [
+                  SizedBox(
+                    width: AppConstants.itemWidth * 0.03,
+                  ),
+                  Expanded(
+                    child: Container(
+                      height: 40,
+                        alignment: Alignment.centerLeft,
+                        decoration: BoxDecoration(
+                            color: ColorResources.WHITE,
+                            borderRadius: BorderRadius.circular(5),
+                            boxShadow: [
+                              BoxShadow(
+                                  color:
+                                  ColorResources.WHITE.withOpacity(0.1),
+                                  blurRadius: 1),
+                            ]),
+                        child: TextFormField(
+                          controller: messageController,
+                          maxLines: 1,
+                          textAlign: TextAlign.left,
+                          focusNode: messageFocus,
+                          keyboardType: TextInputType.text,
+                          initialValue: null,
+                          textInputAction: TextInputAction.next,
+                          style: montserratRegular.copyWith(
+                              color: ColorResources.BLACK,
+                              fontSize: AppConstants.itemWidth * 0.035),
+                          inputFormatters: [
+                            FilteringTextInputFormatter
+                                .singleLineFormatter
+                          ],
+                          onChanged: (value) {
+                            if(value[0]==' '){
+                              messageController.text=='';
+                            }
+                          },
+                          decoration: InputDecoration(
+                            hintText: 'Type...',
+                            contentPadding: const EdgeInsets.symmetric(horizontal: 5),
+                            isDense: true,
+                            counterText: '',
+                            focusedBorder: const OutlineInputBorder(
+                                borderSide: BorderSide.none),
+                            hintStyle: montserratRegular.copyWith(
+                                color: ColorResources.COLOR_PRIMERY,
+                                fontSize: AppConstants.itemWidth * 0.035),
+                            errorStyle: const TextStyle(height: 1.5),
+                            border: InputBorder.none,
+                          ),
+                        )),
+                  ),
+                  SizedBox(
+                    width: AppConstants.itemWidth * 0.03,
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        if(messageController.text==''){
+                          ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                content: Text('Please type some message'),
+                                backgroundColor: ColorResources.RED,
+                                duration: Duration(seconds: 2),
+                              )
+                          );
+                        }else{
+                          messageList.add(MessageDetailsModel("1", messageController.text, dateformatechamge()));
+                          messageController.text='';
+                          listScrollController.jumpTo(listScrollController.position.maxScrollExtent);
+                        }
+                      });
+                    },
+                    child: Container(
+                      height: 40,
+                      decoration: BoxDecoration(
+                          color: ColorResources.WHITE,
+                          borderRadius: BorderRadius.circular(
+                              AppConstants.itemWidth * 0.02)),
+                      padding: const EdgeInsets.all(7),
+                      child:
+                      const Icon(Icons.send, color: ColorResources.COLOR_PRIMERY),
+                    ),
+                  ),
+                  SizedBox(
+                    width: AppConstants.itemWidth * 0.03,
+                  ),
+                ],
+              ),
             ],
           ),
         ),
       ),
     );
+  }
+
+  dateformatechamge(){
+    DateTime today = DateTime.now();
+    var outputDate = DateFormat('hh:mm a').format(today);
+    return outputDate;
   }
 }

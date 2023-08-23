@@ -27,4 +27,7 @@ class Images {
   static const String ic_user_8 = 'assets/image/ic_user_8.png';
   static const String ic_camera = 'assets/image/ic_camera.png';
   static const String ic_info = 'assets/image/ic_info.png';
+  static const String ic_voice = 'assets/image/ic_voice.png';
+  static const String ic_voice_call = 'assets/image/ic_voice_call.png';
+  static const String ic_videocamera = 'assets/image/ic_videocamera.png';
 }
