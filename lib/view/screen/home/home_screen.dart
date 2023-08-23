@@ -78,8 +78,8 @@ class _HomeScreenState extends State<HomeScreen> {
                     begin: Alignment.topCenter,
                     end: Alignment.bottomCenter,
                     colors: [
-                      Color(0xffFFFFFF).withOpacity(0.2),
-                      Color(0xffFFDFFC),
+                      const Color(0xffFFFFFF).withOpacity(0.2),
+                      const Color(0xffFFDFFC),
                     ],
                   ),
                   borderRadius: BorderRadius.only(topLeft: Radius.circular(AppConstants.itemWidth*0.1),topRight: Radius.circular(AppConstants.itemWidth*0.1))
@@ -121,13 +121,13 @@ class _HomeScreenState extends State<HomeScreen> {
                                                 AppConstants.itemWidth * 0.02)),
                                         padding: EdgeInsets.all(
                                             AppConstants.itemWidth * 0.005),
-                                        child: Icon(
+                                        child: const Icon(
                                           Icons.circle,
                                           color: ColorResources.GREEN,
                                           size: 14,
                                         ),
                                       )
-                                    : SizedBox(),
+                                    : const SizedBox(),
                               ],
                             ),
                         SizedBox(width: AppConstants.itemWidth*0.04,),
@@ -156,8 +156,8 @@ class _HomeScreenState extends State<HomeScreen> {
                             ),
                           ],
                         )),
-                        messageUserList[index].messageCount=="0"?SizedBox():Container(
-                          decoration: BoxDecoration(
+                        messageUserList[index].messageCount=="0"?const SizedBox():Container(
+                          decoration: const BoxDecoration(
                               color: Color(0xff1E1E1E),
                             shape: BoxShape.circle
                           ),
@@ -169,7 +169,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         SizedBox(width: AppConstants.itemWidth*0.02,),
                       ],
                     ),
-                    Divider(thickness: 1,)
+                    const Divider(thickness: 1,)
                   ],),
                 );
               },),

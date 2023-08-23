@@ -1,9 +1,9 @@
 import 'package:chat_point/model/message_model.dart';
 import 'package:flutter/material.dart';
 
+import '../../../model/message_details_model.dart';
 import '../../../utill/app_constants.dart';
 import '../../../utill/color_resources.dart';
-import '../../../utill/images.dart';
 import '../../../utill/styles.dart';
 
 class MessageDetailsScreen extends StatefulWidget {
@@ -16,6 +16,22 @@ class MessageDetailsScreen extends StatefulWidget {
 }
 
 class _MessageDetailsScreenState extends State<MessageDetailsScreen> {
+  List<MessageDetailsModel> messageList=[];
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    messageList.add(MessageDetailsModel("1", "Hello", "9:42 AM"));
+    messageList.add(MessageDetailsModel("1", "Hello Brother", "9:42 AM"));
+    messageList.add(MessageDetailsModel("2", "Hello,", "9:43 AM"));
+    messageList.add(MessageDetailsModel("2", "Hello Brother", "9:43 AM"));
+    messageList.add(MessageDetailsModel("1", "How are you my dear Brother ?", "9:44 AM"));
+    messageList.add(MessageDetailsModel("2", "I am fine  & you ?", "9:44 AM"));
+    messageList.add(MessageDetailsModel("1", "I am also fine Bro", "9:45 AM"));
+    messageList.add(MessageDetailsModel("1", "How is your day ?", "9:45 AM"));
+    messageList.add(MessageDetailsModel("2", "I'm doing well", "9:46 AM"));
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -129,6 +145,49 @@ class _MessageDetailsScreenState extends State<MessageDetailsScreen> {
                   ),
                 ],
               ),
+              Expanded(child: ListView.builder(
+                itemCount: messageList.length,
+                padding: EdgeInsets.symmetric(horizontal: AppConstants.itemWidth*0.03),
+                shrinkWrap: true,
+                physics: const ClampingScrollPhysics(),
+                scrollDirection: Axis.vertical,
+                itemBuilder: (context, index) {
+                  return messageList[index].type=="1"
+                      ?
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      Container(
+                        decoration: const BoxDecoration(
+                          color: Color(0xffEBF3FF),
+                          borderRadius: BorderRadius.only(topLeft: Radius.circular(10),bottomLeft: Radius.circular(10),bottomRight: Radius.circular(10))
+                        ),
+                        padding:const EdgeInsets.all(10),
+                        child: Text(messageList[index].message,style: montserratRegular.copyWith(color: ColorResources.BLACK,fontSize: AppConstants.itemWidth*0.035),),
+                      ),
+                      Text(messageList[index].time,style: montserratLight.copyWith(color: ColorResources.BLACK.withOpacity(0.5),fontSize: AppConstants.itemWidth*0.022),),
+                      const SizedBox(height: 5,),
+                    ],
+                  )
+                      :
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Container(
+                        decoration: const BoxDecoration(
+                            color: Color(0xffD0E3FF),
+                            borderRadius: BorderRadius.only(bottomLeft: Radius.circular(10),topRight: Radius.circular(10),bottomRight: Radius.circular(10))
+                        ),
+                        padding:const EdgeInsets.all(10),
+                        child: Text(messageList[index].message,style: montserratRegular.copyWith(color: ColorResources.BLACK,fontSize: AppConstants.itemWidth*0.035),),
+                      ),
+                      Text(messageList[index].time,style: montserratLight.copyWith(color: ColorResources.BLACK.withOpacity(0.5),fontSize: AppConstants.itemWidth*0.022),),
+                      const SizedBox(height: 5,),
+                    ],
+                  );
+              },))
             ],
           ),
         ),
