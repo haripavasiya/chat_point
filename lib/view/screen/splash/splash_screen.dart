@@ -26,7 +26,7 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
     AppConstants.closeKeyboard();
-    route("1");
+    route("0");
   }
 
   route(String isRoute) async {

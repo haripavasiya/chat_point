@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import '../../../utill/app_constants.dart';
 import '../../../utill/color_resources.dart';
 import '../../../utill/images.dart';
-import '../../../utill/styles.dart';
 import '../home/home_screen.dart';
 import '../profile/profile_screen.dart';
 import '../setting/setting_screen.dart';

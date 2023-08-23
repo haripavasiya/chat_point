@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:chat_point/view/screen/gallery/gallery_screen.dart';
 import 'package:chat_point/view/screen/setting/widget/account_screen.dart';
 import 'package:chat_point/view/screen/setting/widget/chat_setting_screen.dart';
 import 'package:chat_point/view/screen/setting/widget/help_screen.dart';
@@ -157,15 +158,18 @@ class _SettingScreenState extends State<SettingScreen> {
 
                     Padding(
                       padding: EdgeInsets.all(AppConstants.itemWidth*0.03),
-                      child: Row(
-                        children: [
-                          Expanded(
-                            child: Text("Gallery",
-                              textAlign: TextAlign.left,
-                              style: montserratMedium.copyWith(color: ColorResources.BLACK,fontSize: AppConstants.itemWidth*0.04),),
-                          ),
-                          const Icon(Icons.arrow_forward_ios_sharp,color: ColorResources.BLACK,size: 20,),
-                        ],
+                      child: GestureDetector(
+                        onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => const GalleryScreen(),)),
+                        child: Row(
+                          children: [
+                            Expanded(
+                              child: Text("Gallery",
+                                textAlign: TextAlign.left,
+                                style: montserratMedium.copyWith(color: ColorResources.BLACK,fontSize: AppConstants.itemWidth*0.04),),
+                            ),
+                            const Icon(Icons.arrow_forward_ios_sharp,color: ColorResources.BLACK,size: 20,),
+                          ],
+                        ),
                       ),
                     ),
                     const Divider(thickness: 1),

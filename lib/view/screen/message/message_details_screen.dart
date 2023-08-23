@@ -131,16 +131,19 @@ class _MessageDetailsScreenState extends State<MessageDetailsScreen> {
                           const Icon(Icons.call, color: ColorResources.COLOR_PRIMERY),
                     ),
                   ),
-                  Container(
-                    decoration: BoxDecoration(
-                        color: ColorResources.WHITE,
-                        borderRadius: BorderRadius.circular(
-                            AppConstants.itemWidth * 0.02)),
-                    padding: const EdgeInsets.all(7),
-                    margin: EdgeInsets.symmetric(
-                        horizontal: AppConstants.itemWidth * 0.02),
-                    child: const Icon(Icons.video_camera_back_outlined,
-                        color: ColorResources.COLOR_PRIMERY),
+                  GestureDetector(
+                    onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => CallScreen(widget.messageUserList),)),
+                    child: Container(
+                      decoration: BoxDecoration(
+                          color: ColorResources.WHITE,
+                          borderRadius: BorderRadius.circular(
+                              AppConstants.itemWidth * 0.02)),
+                      padding: const EdgeInsets.all(7),
+                      margin: EdgeInsets.symmetric(
+                          horizontal: AppConstants.itemWidth * 0.02),
+                      child: const Icon(Icons.video_camera_back_outlined,
+                          color: ColorResources.COLOR_PRIMERY),
+                    ),
                   ),
                   Container(
                     decoration: BoxDecoration(
